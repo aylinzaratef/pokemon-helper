@@ -3,7 +3,7 @@ var React = window.React; // Accedemos a React desde el global
 window.PokemonCard = React.createClass({
   render: function() {
     var types = this.props.pokemon.type.join(' / ');
-    var spritePath = './public/img/' + this.props.pokemon.sprite;
+    var spritePath = './img/' + this.props.pokemon.sprite;
     
     return React.createElement('div', {className: 'pokemon-card'},
       React.createElement('div', {className: 'pokemon-sprite'},
