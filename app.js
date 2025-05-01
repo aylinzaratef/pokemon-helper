@@ -30,7 +30,7 @@ var PokemonApp = React.createClass({
   
   render: function() {
     return React.createElement('div', {className: 'pokemon-app'},
-      React.createElement('h1', null, 'Pokédex 3DS'),
+      React.createElement('h1', null, 'Test 3DS'),
       React.createElement(SearchBar, {onSearch: this.handleSearch}),
       
       React.createElement('div', {className: 'pokemon-list'},
