@@ -1,6 +1,7 @@
-
+// Variable global para los datos
 var pokemonTypesData = { types: [] };
 
+// Cargar datos JSON
 function loadPokemonData(callback) {
   var xhr = new XMLHttpRequest();
   xhr.overrideMimeType("application/json");
@@ -14,112 +15,95 @@ function loadPokemonData(callback) {
   xhr.send(null);
 }
 
-// Filter
+// Filtrar tipos por generación
 function filterTypesByGeneration(generation) {
   return pokemonTypesData.types.filter(function(type) {
-    return (
-      type.gen === "all" ||
-      (generation === "gen2" && type.gen === "2-9") ||
-      (generation === "gen3" && (type.gen === "2-9" || type.gen === "6-9"))
-    );
+    if (generation === 'gen1') return type.gen === "all";
+    if (generation === 'gen2') return type.gen === "all" || type.gen === "2-9";
+    return true; // gen3 muestra todos
   });
 }
 
-// Buttons
-var StartButton = React.createClass({
-  handleClick: function(generation) {
-    this.props.onStart(generation);
-  },
+// Componente de Tipo Pokémon
+var PokemonType = React.createClass({
   render: function() {
-    return React.createElement('div', null,
-      React.createElement('button', 
-        {
-          className: 'start-button',
-          onClick: this.handleClick.bind(this, 'gen1')
-        },
-        'Generación 1'
+    var type = this.props.type;
+    return React.createElement('div', {className: 'pokemon-type'},
+      React.createElement('div', {className: 'type-header ' + type.type.toLowerCase()}, 
+        type.type
       ),
-      React.createElement('button', 
-        {
-          className: 'start-button',
-          onClick: this.handleClick.bind(this, 'gen2')
-        },
-        'Generación 2-5'
-      ),
-      React.createElement('button', 
-        {
-          className: 'start-button',
-          onClick: this.handleClick.bind(this, 'gen3')
-        },
-        'Generación 6+'
+      React.createElement('div', {className: 'type-details'},
+        React.createElement('div', {className: 'detail-section'},
+          React.createElement('strong', null, 'Resistencias: '),
+          type.resistances.join(', ') || 'Ninguna'
+        ),
+        React.createElement('div', {className: 'detail-section'},
+          React.createElement('strong', null, 'Debilidades: '),
+          type.weaknesses.join(', ') || 'Ninguna'
+        ),
+        React.createElement('div', {className: 'detail-section'},
+          React.createElement('strong', null, 'Inmunidades: '),
+          type.immunities.join(', ') || 'Ninguna'
+        )
       )
     );
   }
 });
 
-//list
-var TypeList = React.createClass({
+// Componente de botones iniciales
+var StartButton = React.createClass({
+  handleClick: function(generation) {
+    this.props.onStart(generation);
+  },
   render: function() {
-    return React.createElement('span', null,
-      this.props.types.join(', ')
+    return React.createElement('div', {className: 'start-buttons'},
+      React.createElement('button', {
+        className: 'start-button',
+        onClick: this.handleClick.bind(this, 'gen1')
+      }, 'Generación 1'),
+      React.createElement('button', {
+        className: 'start-button',
+        onClick: this.handleClick.bind(this, 'gen2')
+      }, 'Generación 2-5'),
+      React.createElement('button', {
+        className: 'start-button',
+        onClick: this.handleClick.bind(this, 'gen3')
+      }, 'Generación 6+')
     );
   }
 });
 
-// table
-var PokemonTypesTable = React.createClass({
+// Componente principal de tipos
+var PokemonTypesList = React.createClass({
   render: function() {
-    var generationTitle = 
-      this.props.generation === 'gen1' ? 'Generación 1' :
-      this.props.generation === 'gen2' ? 'Generación 2-5' :
-      'Generación 6+';
+    var generationTitle = this.props.generation === 'gen1' ? 'Generación 1' :
+                         this.props.generation === 'gen2' ? 'Generación 2-5' : 'Generación 6+';
     
-    return React.createElement('div', {className: 'app'},
-      React.createElement('button', 
-        {
-          className: 'back-button',
-          onClick: this.props.onBack
-        },
-        'Volver'
+    return React.createElement('div', {className: 'types-container'},
+      React.createElement('h1', null,  generationTitle),
+      React.createElement('div', {className: 'types-grid'},
+        this.props.types.map(function(type) {
+          return React.createElement(PokemonType, {
+            key: type.type,
+            type: type
+          });
+        })
       ),
-      React.createElement('h1', null, 'Tipos Pokémon - ' + generationTitle),
-      React.createElement('table', null,
-        React.createElement('thead', null,
-          React.createElement('tr', null,
-            React.createElement('th', null, 'Tipo'),
-            React.createElement('th', null, 'Resistencias'),
-            React.createElement('th', null, 'Debilidades'),
-            React.createElement('th', null, 'Inmunidades')
-          )
-        ),
-        React.createElement('tbody', null,
-          this.props.types.map(function(typeObj) {
-            return React.createElement('tr', {key: typeObj.type},
-              React.createElement('td', {className: 'type-cell ' + typeObj.type.toLowerCase()}, typeObj.type),
-              React.createElement('td', null, 
-                React.createElement(TypeList, {types: typeObj.resistances})
-              ),
-              React.createElement('td', null, 
-                React.createElement(TypeList, {types: typeObj.weaknesses})
-              ),
-              React.createElement('td', null, 
-                React.createElement(TypeList, {types: typeObj.immunities})
-              )
-            );
-          })
-        )
-      ),
-     
+      React.createElement('button', {
+        className: 'back-button',
+        onClick: this.props.onBack
+      }, 'Volver')
     );
   }
 });
 
+// Componente App principal
 var App = React.createClass({
   getInitialState: function() {
     return { 
-      showTable: false,
+      showTypes: false,
       currentGeneration: null,
-      isLoading: true
+      isLoading: true 
     };
   },
   componentDidMount: function() {
@@ -130,13 +114,13 @@ var App = React.createClass({
   },
   handleStart: function(generation) {
     this.setState({ 
-      showTable: true,
+      showTypes: true,
       currentGeneration: generation
     });
   },
   handleBack: function() {
     this.setState({ 
-      showTable: false,
+      showTypes: false,
       currentGeneration: null
     });
   },
@@ -146,9 +130,9 @@ var App = React.createClass({
     }
     
     var content;
-    if (this.state.showTable) {
+    if (this.state.showTypes) {
       var filteredTypes = filterTypesByGeneration(this.state.currentGeneration);
-      content = React.createElement(PokemonTypesTable, {
+      content = React.createElement(PokemonTypesList, {
         types: filteredTypes,
         generation: this.state.currentGeneration,
         onBack: this.handleBack
@@ -157,14 +141,14 @@ var App = React.createClass({
       content = React.createElement(StartButton, {onStart: this.handleStart});
     }
     
-    return React.createElement('div', {className: 'container'}, 
-      React.createElement('div', {className: 'title'}, "Tabla de Tipos Pokémon"),
+    return React.createElement('div', {className: 'app-container'}, 
+      React.createElement('h1', null, "Tabla de Tipos Pokémon"),
       content
     );
   }
 });
 
-// Render
+// Renderizar la app
 loadPokemonData(function() {
   ReactDOM.render(
     React.createElement(App),
