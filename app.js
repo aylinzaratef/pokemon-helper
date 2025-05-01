@@ -3,7 +3,7 @@ var pokemonData = [
     { id: 1, name: 'Bulbasaur', type: 'Grass/Poison' },
     { id: 2, name: 'Charmander', type: 'Fire' },
     { id: 3, name: 'Squirtle', type: 'Water' }
-    { id: 3, name: 'Pikachu', type: 'Electric' }
+    
   ];
   
   // Componente PokemonCard sin JSX
@@ -36,9 +36,27 @@ var pokemonData = [
       );
     }
   });
+
+  var TestApp = React.createClass({
+    getInitialState: function() {
+      return { clicks: 0 };
+    },
+    
+    handleClick: function() {
+      this.setState({ clicks: this.state.clicks + 1 });
+    },
+    
+    render: function() {
+      return React.createElement('div', null,
+        React.createElement('h1', null, 'Prueba React ' + React.version),
+        React.createElement('p', null, 'Clics: ' + this.state.clicks),
+        React.createElement('button', { onClick: this.handleClick }, 'Haz clic')
+      );
+    }
+  });
   
   // Renderizar la aplicación
   ReactDOM.render(
-    React.createElement(App, { pokemons: pokemonData }),
+    React.createElement(TestApp),
     document.getElementById('root')
   );
