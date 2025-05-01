@@ -7,7 +7,6 @@ window.PokemonCard = React.createClass({
     
     return React.createElement('div', {className: 'pokemon-card'},
       
-      React.createElement('h1', null, 'Content'),
       React.createElement('div', {className: 'pokemon-sprite'},
      /*    React.createElement('img', {
           src: spritePath,
