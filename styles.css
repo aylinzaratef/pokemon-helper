@@ -1,34 +1,54 @@
+/* Estilos optimizados para pantalla 3DS */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 10px;
+    font-family: '3DS', sans-serif;
+    background-color: #e0e0e0;
     margin: 0;
+    padding: 10px;
+    color: #333;
   }
   
-  .app {
+  .pokemon-app {
     max-width: 400px;
     margin: 0 auto;
-    background-color: white;
-    padding: 15px;
+    background-color: #fff;
     border-radius: 8px;
+    padding: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
-  .pokemon-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .pokemon-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .pokemon-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
     background-color: #f9f9f9;
   }
   
-  h1 {
-    color: #e60000;
-    text-align: center;
+  .pokemon-sprite {
+    margin-right: 10px;
   }
   
-  h2 {
-    color: #333;
-    margin-top: 0;
+  .pokemon-info h2 {
+    margin: 0 0 5px 0;
+    color: #c00;
+    font-size: 18px;
+  }
+  
+  .pokemon-info p {
+    margin: 2px 0;
+    font-size: 14px;
   }

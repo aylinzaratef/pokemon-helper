@@ -4,14 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokémon Helper 3DS</title>
+  <!-- React 15.6.2 -->
   <script src="https://cdn.jsdelivr.net/npm/react@15.6.2/dist/react.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
-
+  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css">
+  <!-- Font básica para mejor legibilidad -->
+  <style>
+    @font-face {
+      font-family: '3DS';
+      src: local('Arial'), local('Helvetica');
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
-  <!-- testing -->
-  <script src="load-components.js"></script>
+  <!-- Cargamos los datos primero -->
+  <script src="data/pokemon.js"></script>
+  <!-- Luego nuestra aplicación -->
+  <script src="app.js"></script>
 </body>
 </html>
