@@ -3,6 +3,7 @@ var pokemonData = [
     { id: 1, name: 'Bulbasaur', type: 'Grass/Poison' },
     { id: 2, name: 'Charmander', type: 'Fire' },
     { id: 3, name: 'Squirtle', type: 'Water' }
+    { id: 3, name: 'Pikachu', type: 'Electric' }
   ];
   
   // Componente PokemonCard sin JSX
