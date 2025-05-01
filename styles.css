@@ -1,41 +1,91 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-  }
-  
-  .app {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  h1 {
-    font-size: 20px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f8f8f8;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 10px;
+  background-color: #333;
+  text-align: center;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.start-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.start-button:hover {
+  background-color: #ff3232;
+}
+
+.app {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.title {
+  color: #fff
+}
+
+h1 {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f8f8;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.normal { background-color: #A8A878; }
+.fuego { background-color: #F08030; }
+.agua { background-color: #6890F0; }
+.planta { background-color: #78C850; }
+.electrico { background-color: #F8D030; }
+.hielo { background-color: #98D8D8; }
+.lucha { background-color: #C03028; }
+.veneno { background-color: #A040A0; }
+.tierra { background-color: #E0C068; }
+.volador { background-color: #A890F0; }
+.psiquico { background-color: #F85888; }
+.bicho { background-color: #A8B820; }
+.roca { background-color: #B8A038; }
+.fantasma { background-color: #705898; }
+.dragon { background-color: #7038F8; }
+.siniestro { background-color: #705848; }
+.acero { background-color: #B8B8D0; }
+.hada { background-color: #EE99AC; }
+
+.weak { background-color: #F44; color: white; }
+.resist { background-color: #4C4; color: white; }
+.strong { background-color: #26F; color: white; }
+.immune { background-color: #999; color: white; }
