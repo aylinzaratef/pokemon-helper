@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .app {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .pokemon-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    color: #e60000;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    margin-top: 0;
+  }
